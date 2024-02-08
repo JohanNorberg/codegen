@@ -121,6 +121,18 @@ impl Function {
         self
     }
 
+    /// Add `&'lifetime self` as a function argument.
+    pub fn arg_ref_lifetime_self(&mut self, lifetime: &str) -> &mut Self {
+        self.arg_self = Some(format!("&'{} self", lifetime));
+        self
+    }
+
+    /// Add `&'lifetime mut self` as a function argument.
+    pub fn arg_mut_lifetime_self(&mut self,  lifetime: &str) -> &mut Self {
+        self.arg_self = Some(format!("&'{} mut self", lifetime));
+        self
+    }
+
     /// Add a function argument.
     pub fn arg<T>(&mut self, name: &str, ty: T) -> &mut Self
     where
